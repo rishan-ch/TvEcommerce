@@ -40,7 +40,7 @@ public class UserRegister extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/view/Register.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class UserRegister extends HttpServlet {
 		
 		if(!password.equals(retypePassword)) {
 			request.setAttribute("error", "password doesn't match");
-			request.getRequestDispatcher("/WEB-INF/view/Register.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
 			return;
 		}
 		
@@ -81,10 +81,10 @@ public class UserRegister extends HttpServlet {
 		boolean isSuccess = dao.addUser(user);
 		
 		if(isSuccess) {
-			request.getRequestDispatcher("Login").forward(request, response);
+			request.getRequestDispatcher("login").forward(request, response);
 		}else {
 			request.setAttribute("error", "username or password or phonenumber is aliready taken");
-			request.getRequestDispatcher("/WEB-INF/view/Register.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
 		}
 	}
 
