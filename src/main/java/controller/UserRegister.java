@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.User;
+import service.UserDAO;
 
 /**
  * Servlet implementation class UserRegister
@@ -19,6 +20,7 @@ import model.User;
 @WebServlet(asyncSupported = true, urlPatterns = { "/register" })
 public class UserRegister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UserDAO dao;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -26,6 +28,11 @@ public class UserRegister extends HttpServlet {
     public UserRegister() {
         super();
         // TODO Auto-generated constructor stub
+    }
+    
+    @Override
+    public void init() {
+    	dao = new UserDAO();
     }
 
 	/**
@@ -40,8 +47,45 @@ public class UserRegister extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String fullName = request.getParameter("fullName");
+		String email = request.getParameter("email");
+		long phone = Long.parseLong(request.getParameter("phone"));
+		String bithday = request.getParameter("birthday");
+		Date dob = null;
+		try {
+			dob = new java.sql.Date(new SimpleDateFormat("yyyy-mm-dd").parse(bithday).getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String gender = request.getParameter("gender");
+		String address = request.getParameter("address");
+		String password = request.getParameter("password");
+		String retypePassword = request.getParameter("retypePassword");
+		
+		if(!password.equals(retypePassword)) {
+			request.setAttribute("error", "password doesn't match");
+			request.getRequestDispatcher("/WEB-INF/view/Register.jsp").forward(request, response);
+			return;
+		}
+		
+		User user = new User();
+		user.setFullName(fullName);
+		user.setEmail(email);
+		user.setPhone(phone);
+		user.setDob(dob);
+		user.setGender(gender);
+		user.setAddress(address);
+		//hashing
+		user.setPassword(password);
+		
+		boolean isSuccess = dao.addUser(user);
+		
+		if(isSuccess) {
+			request.getRequestDispatcher("Login").forward(request, response);
+		}else {
+			request.setAttribute("error", "username or password or phonenumber is aliready taken");
+			request.getRequestDispatcher("/WEB-INF/view/Register.jsp").forward(request, response);
+		}
 	}
 
 }
