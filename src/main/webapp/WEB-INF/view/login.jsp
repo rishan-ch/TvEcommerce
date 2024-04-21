@@ -10,11 +10,20 @@
 <body>
 	<div class="login-box">
 		<h2>Login</h2>
-		<form action="#">
+		<%
+						    if(request.getAttribute("error")!=null)
+						    {
+						    	%><p style="color:red" <%=request.getAttribute("error") %>></p>
+						   
+						   <%  }
+						
+						
+						%>
+		<form action="<%=request.getContextPath() %>/logn" method="post">
 			<div class="row">
 				<div class="col">
-					<label for="username">Username:</label> 
-					<input type="text" id="username" name="username" required>
+					<label for="email">email:</label> 
+					<input type="email" id="email" name="email" required>
 				</div>
 			</div>
 			<div class="row">
@@ -23,9 +32,9 @@
 					<input type="password" id="password" name="password" required>
 				</div>
 			</div>
-			<button type="submit" class="login-button">Login</button>
+			<button type="submit" class="login-button" name ="login">Login</button>
 		</form>
-		<a href="<%=request.getContextPath()%>/Register">Signup</a>
+		<a href="<%=request.getContextPath()%>/register">Signup</a>
 	</div>
 </body>
 </html>

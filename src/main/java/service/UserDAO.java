@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.User;
 import utils.DbConnectivity;
+//import utils.PasswordHash;
 
 public class UserDAO {
 	private Connection conn;
@@ -75,6 +76,27 @@ public class UserDAO {
 		int rows = statement.executeUpdate();
 		
 		return rows;
+	}
+	
+	//login
+	public boolean studentLogin(String email, String password) throws SQLException {
+		statement = conn.prepareStatement("select email,password from user where email=?");
+		statement.setString(1, email);
+		resultSet = statement.executeQuery();
+		boolean isSuccess = false;
+		if (resultSet.next()) {
+			String passwordFromDb = resultSet.getString("password");
+
+			//PasswordHash.verifyPassword(password, passwordFromDb)
+			if (password.equals(passwordFromDb)) {
+				isSuccess = true;
+			} else {
+				isSuccess = false;
+			}
+
+		}
+		return isSuccess;
+
 	}
 	
 	

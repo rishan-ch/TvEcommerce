@@ -6,60 +6,74 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/stylesheet/register.css"/>
+	href="${pageContext.request.contextPath}/stylesheets/register.css"/>
 </head>
 <body>
-	<div class="container">
-		<h1>Registration Form</h1>
 
-		<form action="<%=request.getContextPath() %>/register" method="post">
-			<div class="row">
-				<div class="col">
-					<label for="fullName">full Name:</label> <input type="text"
-						id="fullName" value="" name="fullName" required>
-				</div>
-				<div class="col">
-					<label for="email">email:</label> <input type="email"
-						id="email" name="email" required>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<label for="phone">phone:</label> <input type="text"
-						id="phone" name="phone" required>
-				</div>
-				<div class="col">
-					<label for="birthday">Birthday:</label> <input type="date"
-						id="birthday" name="birthday" required>
-				</div>
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form style="padding-top: 60px;" action="<%=request.getContextPath() %>/register" method="post">
+                <h1>Create Account</h1>
+                <input type="text" placeholder="Full Name" name = "fullName">
+                <input type="email" placeholder="Email" name = "email">
+                <div class="row">
+                    <div class="col">
+                        <input type="password" placeholder="Password" name="password">
+                    </div>
+                    <div class="col">
+                        <input type="password" placeholder="Retype Password" name="retypePassword">
+                    </div>
+			    </div>
+                <div class="row">
+                    <div class="col">
+                        <input type="text" id="phone" placeholder="Phone (+977)" required name="phone">
+                    </div>
+                    <div class="col">
+                        <input type="text" placeholder="City" name="address">
+                    </div>
+			    </div>
+                
+                <div class="row">
+                    <div class="col">
+                            <select id="gender" name="gender" required name="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="others">Others</option>
+                            </select>
+                    </div>
+                    <div class="col">
+                        <input type="date" id="birthday" name="birthday" required name="birthday">
+                    </div>
+                </div>
 
-			</div>
-			<div class="row">
-				<div class="col">
-					<label for="gender">Gender:</label> <select id="gender"
-						name="gender" required>
-						<option value="male">Male</option>
-						<option value="female">Female</option>
-					</select>
-				</div>
-				<div class="col">
-					<label for="address">address:</label> <input type="text" id="address"
-						name="address" required>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<label for="password">Password:</label> <input type="password"
-						id="password" name="password" required>
-				</div>
-				<div class="col">
-					<label for="retypePassword">Retype Password:</label> <input
-						type="password" id="retypePassword" name="retypePassword" required>
-						
-				</div>
-			</div>
-			<button type="submit">Submit</button>
-		</form>
-	</div>
+            <button>Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form action="<%=request.getContextPath() %>/login" method="post">
+                <h1>Sign in</h1>
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <a href="#">Forgot Your Password?</a>
+                <button>Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome User!</h1>
+                    <p>Continue with your existing email and password</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Infinity Stores</h1>
+                    <p>Register with personal details to proceed further</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="${pageContext.request.contextPath}/script/script.js"></script>
 </body>
 </html>

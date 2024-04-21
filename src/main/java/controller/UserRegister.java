@@ -81,7 +81,7 @@ public class UserRegister extends HttpServlet {
 		boolean isSuccess = dao.addUser(user);
 		
 		if(isSuccess) {
-			request.getRequestDispatcher("login").forward(request, response);
+			response.sendRedirect("login");
 		}else {
 			request.setAttribute("error", "username or password or phonenumber is aliready taken");
 			request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
