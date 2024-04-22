@@ -40,6 +40,7 @@ public class UserRegister extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//response.sendRedirect("/WEB-INF/view/register.jsp")
 		request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
 	}
 

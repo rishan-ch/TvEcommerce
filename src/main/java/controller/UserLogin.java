@@ -47,6 +47,7 @@ public class UserLogin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("data is coming to servlet");
 		String loginForm = request.getParameter("login");
 		if (loginForm != null) {
 

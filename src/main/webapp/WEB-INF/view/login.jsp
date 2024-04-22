@@ -5,36 +5,42 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/stylesheet/login.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/stylesheets/register.css"/>
 </head>
 <body>
-	<div class="login-box">
-		<h2>Login</h2>
-		<%
-						    if(request.getAttribute("error")!=null)
-						    {
-						    	%><p style="color:red" <%=request.getAttribute("error") %>></p>
-						   
-						   <%  }
-						
-						
+
+    <div class="container" id="container">
+        <div class="form-container sign-in">
+            <form action="<%=request.getContextPath() %>/login" method="post">
+            		<% 
+						if(request.getAttribute("error")!=null){
+							%> <p style="color:red"><%=request.getAttribute("error") %>></p>
+						<%}
 						%>
-		<form action="<%=request.getContextPath() %>/logn" method="post">
-			<div class="row">
-				<div class="col">
-					<label for="email">email:</label> 
-					<input type="email" id="email" name="email" required>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<label for="password">Password:</label> 
-					<input type="password" id="password" name="password" required>
-				</div>
-			</div>
-			<button type="submit" class="login-button" name ="login">Login</button>
-		</form>
-		<a href="<%=request.getContextPath()%>/register">Signup</a>
-	</div>
+                <h1>Log in</h1>
+                <input type="email" placeholder="Email" id="email" name="email">
+                <input type="password" placeholder="Password" id="password" name ="password">
+                <a href="#">Forgot Your Password?</a>
+                <button type="submit" name ="login">Login</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome User!</h1>
+                    <p>Continue with your existing email and password</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Infinity Stores</h1>
+                    <p>Register with personal details to proceed further</p>
+                    <a href="<%=request.getContextPath()%>/register">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="${pageContext.request.contextPath}/script/script.js"></script>
 </body>
 </html>
