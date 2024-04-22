@@ -27,11 +27,6 @@
         </div>
         <div class="toggle-container">
             <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>Welcome User!</h1>
-                    <p>Continue with your existing email and password</p>
-                    <button class="hidden" id="login">Sign In</button>
-                </div>
                 <div class="toggle-panel toggle-right">
                     <h1>Infinity Stores</h1>
                     <p>Register with personal details to proceed further</p>
