@@ -13,8 +13,8 @@ public class UserDAO {
 	private PreparedStatement statement;
 	private boolean isSuccess;
 	private ResultSet resultSet;
-	private static final String insert_query = "insert into user "
-			+ "(fullName,email,phone,dob,gender,address,password) "
+	private static final String insertQuery = "insert into user"
+			+ "(fullName,email,phone,dob,gender,address,password)"
 			+ "values(?,?,?,?,?,?,?)";
 	
 	public UserDAO() {
@@ -64,7 +64,7 @@ public class UserDAO {
 	//query is instantiated 
 	public int insertUser(User user) throws SQLException{
 		
-		statement = conn.prepareStatement(insert_query);
+		statement = conn.prepareStatement(insertQuery);
 		statement.setString(1, user.getFullName());
 		statement.setString(2, user.getEmail());
 		statement.setLong(3, user.getPhone());

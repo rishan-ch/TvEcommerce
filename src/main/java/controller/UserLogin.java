@@ -55,12 +55,12 @@ public class UserLogin extends HttpServlet {
 			String password = request.getParameter("password");
 			
 			try {
-				if (email.equals("admin") && password.equals("admin123")) {
-//					HttpSession session = request.getSession();
-//					session.setAttribute("username", username);
-//					session.setAttribute("role", "admin");
-//					session.setMaxInactiveInterval(5 * 60);
-//					response.sendRedirect(request.getContextPath()+"/admin");
+				if (email.equals("admin@gmail.com") && password.equals("a")) {
+					HttpSession session = request.getSession();
+					session.setAttribute("email", email);
+					session.setAttribute("role", "admin");
+					session.setMaxInactiveInterval(5 * 60);
+					response.sendRedirect(request.getContextPath()+"/admin");
 				}
 
 				else {
