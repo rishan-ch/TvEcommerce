@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Product;
 import utils.DbConnectivity;
@@ -14,7 +16,7 @@ public class ProductDAO {
 	private Connection conn;
 	private PreparedStatement statement;
 	//private boolean productAdded;
-	//private ResultSet resultSet;
+	private ResultSet resultSet;
 	private static final String productInsert = "insert into product "
 	        + "(productName, productDescription, screenSize, quantity, brand, price, productImage, productImageName) "
 	        + "values (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -22,6 +24,21 @@ public class ProductDAO {
 	public ProductDAO() {
 		conn = DbConnectivity.getDbConnection();
 	}
+	
+	//view all product
+	public void viewAllProduct() throws SQLException {
+		List<Product> productList = new ArrayList();
+		String viewQuery = "selecct * from user";
+		statement = conn.prepareStatement(viewQuery);
+		resultSet = statement.executeQuery();
+		
+		while(resultSet.next()) {
+			Product product = new Product();
+			product.setProductName(viewQuery);
+		}
+		
+	}
+	
 	
 	public boolean addProduct(Product product) throws SQLException {
 		

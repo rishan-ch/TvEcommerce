@@ -1,7 +1,5 @@
 package model;
 
-import java.util.BitSet;
-
 public class Product {
 	
 	private String productName;
