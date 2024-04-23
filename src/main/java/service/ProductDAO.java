@@ -34,7 +34,7 @@ public class ProductDAO {
 		
 		while(resultSet.next()) {
 			Product product = new Product();
-			product.setProductName(viewQuery);
+			//product.setProductName(resultSet.get);
 		}
 		
 	}
