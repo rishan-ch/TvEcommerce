@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +19,11 @@
 
     <!-- Custom styles for this template-->
     <link href="${pageContext.request.contextPath}/stylesheets/sb-admin-2.min.css"rel="stylesheet">
-
+<title>View Products</title>
 </head>
 <body>
-    <div id="wrapper" style="color: red;">
+
+    <div id="wrapper">
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -60,7 +62,6 @@
                 </a>
             </li>
             
-                        <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="<%=request.getContextPath() %>/product" >
                     <i class="fas fa-fw fa-wrench"></i>
@@ -81,47 +82,48 @@
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Users</span>
                 </a>
-            </li>
-            
-s
-            
+            </li>         
         </ul>
-    <section class="dashboard">
-        <div class="dash-content">
-            <div class="overview">
-                <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Dashboard</span>
-                </div>
+<table border="1">
+<thead>
+       <tr>
+           <th>Product Name</th>
+           <th>Description </th>
+           <th>Quantity</th>
+           <th>Brand</th>
+           <th>Price</th>
+           <th>Screen size</th>
+           <th>Product Image</th>
+           <th>Product Image Name</th>
+           <th>Edit</th>
+           <th>Delete</th>
+</tr>
+</thead>
+           <tbody>
+                 <c:forEach var="product" items="${listOfProduct}">
+                 <tr>
+                     <td><c:out value="${product.productName }"></c:out></td>
+                     <td><c:out value="${product.productDescription}"></c:out></td>
+                     <td><c:out value="${product.quantity }"></c:out></td>
+                     <td><c:out value="${product.brand }"></c:out></td>
+                     <td><c:out value="${product.price }"></c:out></td>
+                     <td><c:out value="${product.screenSize }"></c:out></td>
+                     <td><c:out value="${product.productImage }"></c:out></td>
+                 	 <td><c:out value="${product.productImageName }"></c:out></td>
+                 	 <td style="color:blue;">
+                 	 <a href="<%=request.getContextPath() %>/editProduct"><c:out value="Edit"></c:out>
+                 	 </a></td>
+                 	 <td style="color:red;">
+                 	 <a href="<%=request.getContextPath() %>/deleteProduct"><c:out value="Delete"></c:out>
+                 	 </a></td>
+                 </tr>
+                 
+                 </c:forEach>
+           </tbody>
 
-                <div class="boxes">
-                    <div class="box box1">
-                        <i class="uil uil-thumbs-up"></i>
-                        <span class="text">Total Products</span>
-                        <span class="number">50,120</span>
-                    </div>
-                    <div class="box box2">
-                        <i class="uil uil-comments"></i>
-                        <span class="text">Total Users</span>
-                        <span class="number">20,120</span>
-                    </div>
-                    <div class="box box3">
-                        <i class="uil uil-share"></i>
-                        <span class="text">Total Orders</span>
-                        <span class="number">10,120</span>
-                    </div>
-                </div>
-            </div>   
-        </div>
-    </section>
-    </div>
-    
-</body>
-</html>
 
 
-
-
-<a href="<%=request.getContextPath() %>/addProduct">Add product</a>
+</table>
+</div>
 </body>
 </html>

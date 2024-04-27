@@ -9,7 +9,7 @@
     
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/style.css">
-    <title>Admin</title>
+    <title>Add Products</title>
     <!----===== Iconscout CSS ===== -->
     <link href="${pageContext.request.contextPath}/stylesheets/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -40,7 +40,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item ">
-                <a class="nav-link" href="adminDashboard.html">
+                <a class="nav-link" href="<%=request.getContextPath() %>/admin">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -55,9 +55,16 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
-                <a class="nav-link" href="addProducts.html" >
+                <a class="nav-link"href="<%=request.getContextPath() %>/addProduct"  >
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Add Products</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="<%=request.getContextPath() %>/product" >
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>View Products</span>
                 </a>
             </li>
 

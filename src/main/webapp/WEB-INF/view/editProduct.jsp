@@ -9,7 +9,7 @@
     
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/style.css">
-    <title>Admin</title>
+    <title>Edit Product</title>
     <!----===== Iconscout CSS ===== -->
     <link href="${pageContext.request.contextPath}/stylesheets/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -17,17 +17,18 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath}/stylesheets/sb-admin-2.min.css"rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/stylesheets/sb-admin-2.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/stylesheets/form.css" rel="stylesheet">
 
 </head>
 <body>
-    <div id="wrapper" style="color: red;">
+    <div id="wrapper">
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -38,7 +39,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="<%=request.getContextPath() %>/admin">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Dashboard</span></a>
@@ -53,16 +54,15 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="<%=request.getContextPath() %>/addProduct" >
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Add Products</span>
                 </a>
             </li>
             
-                        <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="<%=request.getContextPath() %>/product" >
+            <li class="nav-item active">
+                <a class="nav-link" href="<%=request.getContextPath() %>/product" >
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>View Products</span>
                 </a>
@@ -82,46 +82,47 @@
                     <span>Users</span>
                 </a>
             </li>
-            
-s
-            
         </ul>
-    <section class="dashboard">
-        <div class="dash-content">
-            <div class="overview">
-                <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Dashboard</span>
+        <div class="right">
+        <div class="productadd">
+        <form action="<%=request.getContextPath() %>/addProduct"  method="post" enctype="multipart/form-data">
+            <h1>Edit Product</h1>
+            <input type="text" placeholder="Product Name" name = "productName" value="${productName}">
+            <input type="textarea" placeholder="Product Description" name = "productDescription" value="${productDescription}">
+            <input type="file" name="image" accept="image/*">
+            <div class="row">
+                <div class="col">
+                    <input type="quantity" placeholder="Product Quantity" name="quantity" value="${quantity}">
                 </div>
+                <div class="col">
+                    <input type="price" placeholder="Product Price" name="price" value="${price}">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
 
-                <div class="boxes">
-                    <div class="box box1">
-                        <i class="uil uil-thumbs-up"></i>
-                        <span class="text">Total Products</span>
-                        <span class="number">50,120</span>
-                    </div>
-                    <div class="box box2">
-                        <i class="uil uil-comments"></i>
-                        <span class="text">Total Users</span>
-                        <span class="number">20,120</span>
-                    </div>
-                    <div class="box box3">
-                        <i class="uil uil-share"></i>
-                        <span class="text">Total Orders</span>
-                        <span class="number">10,120</span>
-                    </div>
+                        <select id="screenSize" name="screenSize" required name="screenSize" style="width: 150px;">
+                            <option value="16 X 14  ">16 X 14  </option>
+                            <option value="32 X 20">32 X 20</option>
+                        </select>
                 </div>
-            </div>   
+                <div class="col">
+                    <select id="brand" name="brand" required name="brand" style="width: 150px;">
+                        <option value="Samsung">Samsung</option>
+                        <option value="LG">L.G</option>
+                        <option value="others">Others</option>
+                    </select>
+            </div>
+            </div>
+
+        <button type="submit">Add</button>
+        </form>
         </div>
-    </section>
+    </div>
     </div>
     
-</body>
-</html>
 
-
-
-
-<a href="<%=request.getContextPath() %>/addProduct">Add product</a>
+    
 </body>
 </html>

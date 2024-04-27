@@ -53,9 +53,10 @@ public class AddProductController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		String productName = request.getParameter("productName");
 		String productDescription = request.getParameter("productDescription");
-		String screenSize = request.getParameter("productName");
+		String screenSize = request.getParameter("screenSize");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		String brand = request.getParameter("brand");
 		float price = Float.parseFloat(request.getParameter("price"));

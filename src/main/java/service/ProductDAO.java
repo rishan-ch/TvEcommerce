@@ -26,16 +26,36 @@ public class ProductDAO {
 	}
 	
 	//view all product
-	public void viewAllProduct() throws SQLException {
-		List<Product> productList = new ArrayList();
-		String viewQuery = "selecct * from user";
+	public List<Product> viewAllProduct() throws SQLException {
+		List<Product> productList = new ArrayList<Product>();
+		String viewQuery = "select * from product";
 		statement = conn.prepareStatement(viewQuery);
 		resultSet = statement.executeQuery();
 		
 		while(resultSet.next()) {
+			
+			String productName = resultSet.getString("productName"); 
+			String productDescription = resultSet.getString("productDescription"); 
+			String screenSize = resultSet.getString("screenSize");
+			int quantity = resultSet.getInt("quantity");
+			String brand = resultSet.getString("brand");
+			float price = resultSet.getFloat("price");
+			
+			
 			Product product = new Product();
-			//product.setProductName(resultSet.get);
+			product.setProductName(productName);
+			product.setProductDescription(productDescription);
+			product.setScreenSize(screenSize);
+			product.setQuantity(quantity);
+			product.setBrand(brand);
+			product.setPrice(price);
+			product.setProductImageName(null);
+			product.setProductImage(null);
+			
+			productList.add(product);
+			
 		}
+		return productList;
 		
 	}
 	

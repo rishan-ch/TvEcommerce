@@ -68,7 +68,7 @@ public class UserLogin extends HttpServlet {
 					if (isSuccess) {
 						HttpSession session = request.getSession();
 						session.setAttribute("email", email);
-						//session.setAttribute("role", "user");
+						session.setAttribute("role", "user");
 						session.setMaxInactiveInterval(5 * 60);
 						response.sendRedirect(request.getContextPath()+"/home");
 					} else {
