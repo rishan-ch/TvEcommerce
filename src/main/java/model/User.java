@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class User {
 	// user variables and getters and setters are created
-	
+	private int id;
 	private String fullName;
 	private String email;
 	private long phone;
@@ -63,6 +63,12 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

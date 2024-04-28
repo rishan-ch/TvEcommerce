@@ -94,7 +94,6 @@
            <th>Price</th>
            <th>Screen size</th>
            <th>Product Image</th>
-           <th>Product Image Name</th>
            <th>Edit</th>
            <th>Delete</th>
 </tr>
@@ -109,13 +108,10 @@
                      <td><c:out value="${product.price }"></c:out></td>
                      <td><c:out value="${product.screenSize }"></c:out></td>
                      <td><c:out value="${product.productImage }"></c:out></td>
-                 	 <td><c:out value="${product.productImageName }"></c:out></td>
-                 	 <td style="color:blue;">
-                 	 <a href="<%=request.getContextPath() %>/editProduct"><c:out value="Edit"></c:out>
-                 	 </a></td>
-                 	 <td style="color:red;">
-                 	 <a href="<%=request.getContextPath() %>/deleteProduct"><c:out value="Delete"></c:out>
-                 	 </a></td>
+            <td>
+                <a href="editProduct?id=${product.id}" style="color: blue;">Edit</a>
+                <a href="deleteProduct?productId=${product.id}" style="color: red;">Delete</a>
+            </td>
                  </tr>
                  
                  </c:forEach>

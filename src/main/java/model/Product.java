@@ -1,7 +1,7 @@
 package model;
 
 public class Product {
-	
+	private int id;
 	private String productName;
 	private String productDescription;
 	private String screenSize; 
@@ -66,6 +66,12 @@ public class Product {
 	}
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

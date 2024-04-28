@@ -25,6 +25,64 @@ public class ProductDAO {
 		conn = DbConnectivity.getDbConnection();
 	}
 	
+	public int deleteProduct(Product product) throws SQLException { 
+		statement = conn.prepareStatement("delete * from product where id=?");
+		int row = statement.executeUpdate();
+		return row;
+	}
+	
+	public int updateProduct(Product product) throws SQLException {
+		int row=0;
+		
+//		if(isUsernameTakenByOther(student.getUsername(),student.getId()))
+//		{
+//			return row;
+//		}
+//		else if(isEmailTakenByOther(student.getEmail(),student.getId()))
+//		{
+//			return row;
+//		}
+//		else if(isPhoneNumberTakenByOther(student.getPhoneNumber(),student.getId()))
+//		{
+//			return row;
+//		}
+//		else
+//		{
+			statement=conn.prepareStatement("update product set productNametName=?,productDescription=?,screenSize=?,quantity=?,brand=?,price=? where id=?");
+		     statement.setString(1, product.getProductName());
+		     statement.setString(2, product.getProductDescription());
+		     statement.setString(3, product.getScreenSize());
+		     statement.setInt(4, product.getQuantity());
+		     statement.setString(5, product.getBrand());
+		     statement.setFloat(6, product.getPrice());
+		     
+		      row=statement.executeUpdate();
+//		}
+	     
+		
+	     return row;
+	}
+	
+	public Product getProductById(int id) throws SQLException {
+		statement=conn.prepareStatement("select productName,productDescription,screenSize,quantity,brand,price from product where id=?");
+		statement.setInt(1, id);
+		resultSet =statement.executeQuery();
+		Product product=new Product();
+		if(resultSet.next())
+		{
+			product.setProductName(resultSet.getString("productName"));
+			product.setProductDescription(resultSet.getString("productDescription"));
+			product.setScreenSize(resultSet.getString("screenSize"));
+			product.setQuantity(resultSet.getInt("quantity"));
+			product.setBrand(resultSet.getString("brand"));
+			product.setPrice(resultSet.getFloat("price"));
+			
+		}
+		return product;
+		
+		
+	}
+	
 	//view all product
 	public List<Product> viewAllProduct() throws SQLException {
 		List<Product> productList = new ArrayList<Product>();
@@ -33,7 +91,7 @@ public class ProductDAO {
 		resultSet = statement.executeQuery();
 		
 		while(resultSet.next()) {
-			
+			int id = resultSet.getInt("id");
 			String productName = resultSet.getString("productName"); 
 			String productDescription = resultSet.getString("productDescription"); 
 			String screenSize = resultSet.getString("screenSize");
@@ -43,14 +101,14 @@ public class ProductDAO {
 			
 			
 			Product product = new Product();
+			product.setId(id);
 			product.setProductName(productName);
 			product.setProductDescription(productDescription);
 			product.setScreenSize(screenSize);
 			product.setQuantity(quantity);
 			product.setBrand(brand);
 			product.setPrice(price);
-			product.setProductImageName(null);
-			product.setProductImage(null);
+			product.setProductImage(resultSet.getBlob("productImage").getBytes(1, (int)resultSet.getBlob("productImage").length()));
 			
 			productList.add(product);
 			
