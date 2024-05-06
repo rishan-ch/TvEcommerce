@@ -88,14 +88,14 @@
         <form action="<%=request.getContextPath() %>/addProduct"  method="post" enctype="multipart/form-data">
             <h1>Add Products</h1>
             <input type="text" placeholder="Product Name" name = "productName">
-            <input type="textarea" placeholder="Product Description" name = "productDescription">
+            <input type="text" placeholder="Product Description" name = "productDescription">
             <input type="file" name="image" accept="image/*">
             <div class="row">
                 <div class="col">
-                    <input type="quantity" placeholder="Product Quantity" name="quantity">
+                    <input type="text" placeholder="Product Quantity" name="quantity">
                 </div>
                 <div class="col">
-                    <input type="price" placeholder="Product Price" name="price">
+                    <input type="text" placeholder="Product Price" name="price">
                 </div>
             </div>
             

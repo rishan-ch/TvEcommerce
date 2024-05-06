@@ -89,14 +89,14 @@
         <form action="<%=request.getContextPath() %>/updateProduct"  method="post" enctype="multipart/form-data">
             <h1>Edit Product</h1>
             <input type="text" placeholder="Product Name" name = "productName" value="${product.productName}">
-            <input type="textarea" placeholder="Product Description" name = "productDescription" value="${product.productDescription}">
+            <input type="text" placeholder="Product Description" name = "productDescription" value="${product.productDescription}">
             <input type="file" name="image" accept="image/*">
             <div class="row">
                 <div class="col">
-                    <input type="quantity" placeholder="Product Quantity" name="quantity" value="${product.quantity}">
+                    <input type="text" placeholder="Product Quantity" name="quantity" value="${product.quantity}">
                 </div>
                 <div class="col">
-                    <input type="price" placeholder="Product Price" name="price" value="${product.price}">
+                    <input type="text" placeholder="Product Price" name="price" value="${product.price}">
                 </div>
             </div>
             
@@ -115,8 +115,8 @@
                     </select>
             </div>
             </div>
-
-        <button type="submit">Update</button>
+			<input type="hidden" name="id" value="${product.id }">
+    		<button type="submit">Edit</button>
         </form>
         </div>
     </div>

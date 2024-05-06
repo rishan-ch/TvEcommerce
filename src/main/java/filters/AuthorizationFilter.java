@@ -20,23 +20,68 @@ public class AuthorizationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
             throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest) req;
-        HttpServletResponse response = (HttpServletResponse) res;
+		HttpServletRequest request = (HttpServletRequest) req;
+		HttpServletResponse response = (HttpServletResponse) res;
 
-        String role = (String) request.getSession().getAttribute("role");
+		String role = (String) request.getSession().getAttribute("role");
 
-        if (role != null) {
-            if (role.equals("admin")) {
-                // Redirect to admin page for admin role
-                response.sendRedirect(request.getContextPath() + "/admin");
-            } else if (role.equals("user")) {
-                // Redirect to home page for user role
-                response.sendRedirect(request.getContextPath() + "/home");
-            }
-        } else {
-            // If role is not set, continue with the filter chain
-            chain.doFilter(request, response);
-        }
+		if (role != null && role.equals("admin")) {
+
+
+			
+			if (request.getRequestURI().endsWith("addProduct")) {
+				
+				request.getRequestDispatcher("addProduct").forward(request, response);
+			}
+			else if (request.getRequestURI().endsWith("deleteProduct")) {
+			
+				request.getRequestDispatcher("deleteProduct").forward(request, response);
+			}
+			else if (request.getRequestURI().endsWith("admin")) {
+				
+				request.getRequestDispatcher("admin").forward(request, response);
+			}
+			else if ( request.getRequestURI().endsWith("editProduct")) {
+				
+				request.getRequestDispatcher("editProduct").forward(request, response);
+			}
+			else if ( request.getRequestURI().endsWith("updateProduct")) {
+				
+				request.getRequestDispatcher("updateProduct").forward(request, response);
+			}
+			else if (!request.getRequestURI().endsWith("admin")) {
+				
+				response.sendRedirect(request.getContextPath() + "/admin");
+			}
+			else
+			{
+				request.getRequestDispatcher("admin").forward(request, response);
+			}
+		} 
+		else if (role != null && role.equals("user")) 
+		{
+
+
+			if (request.getRequestURI().endsWith("logout"))
+			{
+				request.getRequestDispatcher("logout").forward(request, response);
+			}
+			else if (role != null && role.equals("user") && !request.getRequestURI().endsWith("home")) {
+
+				response.sendRedirect(request.getContextPath() + "/home");
+			}
+			else 
+			{
+
+				
+				request.getRequestDispatcher("home").forward(request, response);
+			}
+		}
+		else
+
+		{
+			chain.doFilter(request, response);
+		}
     }
 
     @Override

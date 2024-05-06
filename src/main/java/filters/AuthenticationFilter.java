@@ -37,23 +37,37 @@ public class AuthenticationFilter implements Filter {
 	        return;
 	    }
 
-	    if (requestUrl.endsWith("/") || requestUrl.endsWith("login") || requestUrl.endsWith("register")
-	            || requestUrl.endsWith("logout") || requestUrl.endsWith("profile") || requestUrl.endsWith("admin") || requestUrl.endsWith("view")) {
-	        if (session == null) {
+	    else if (requestUrl.endsWith("/") || requestUrl.endsWith("login") || requestUrl.endsWith("register") || requestUrl.endsWith("home")
+	            || requestUrl.endsWith("logout") || requestUrl.endsWith("profile") || requestUrl.endsWith("admin") || requestUrl.endsWith("viewProduct") 
+	    		|| requestUrl.endsWith("editProduct") || requestUrl.endsWith("addProduct") || requestUrl.endsWith("updateProduct") || requestUrl.endsWith("deleteProduct"))
+	    {
+	        
+	    	if (session == null) {
 	            System.out.println("Session is null, forwarding to login");
 	            request.getRequestDispatcher("/login").forward(request, response);
-	            return;
-	        } else if (session.getAttribute("email") == null) {
-	            System.out.println("Email is null, redirecting to login");
-	            response.sendRedirect(request.getContextPath() + "/login");
-	            return;
-	        } else {
-	            System.out.println("Both session and email are available, forwarding to home");
-	            request.getRequestDispatcher("/home").forward(request, response);
-	            return;
+	            
 	        }
-	    }
+	    	
+	    	else if (session.getAttribute("email") != null) {
+	    		chain.doFilter(request, response);
+	        } 
+	    	
+	    	else if (session.getAttribute("email") == null) {
 
+				if (requestUrl.endsWith("profile") || requestUrl.endsWith("logout") || requestUrl.endsWith("admin")) {
+					response.sendRedirect(request.getContextPath() + "/login");
+					System.out.println("yeta aayo");
+				}
+
+				else {
+
+					chain.doFilter(request, response);
+				}
+	    	}
+	    }
+	    else {
+	    	request.getRequestDispatcher("/error").forward(request, response);
+	    }
 	    
 	}
 

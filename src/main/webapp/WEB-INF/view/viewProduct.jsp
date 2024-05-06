@@ -108,10 +108,19 @@
                      <td><c:out value="${product.price }"></c:out></td>
                      <td><c:out value="${product.screenSize }"></c:out></td>
                      <td><c:out value="${product.productImage }"></c:out></td>
-            <td>
-                <a href="editProduct?id=${product.id}" style="color: blue;">Edit</a>
-                <a href="deleteProduct?productId=${product.id}" style="color: red;">Delete</a>
-            </td>
+                     
+                    <td>
+                    <form action="<%=request.getContextPath()%>/editProduct" method="post">
+    				<input type="hidden" name="id" value="${product.id }">
+    				<button type="submit">Edit</button>
+					</form>
+					</td>
+                    <td>
+                    <form action="<%=request.getContextPath()%>/deleteProduct" method="post">
+					    <input type="hidden" name="id" value="${student.id}">
+					    <button type="submit">Delete</button>
+					</form>
+					</td>
                  </tr>
                  
                  </c:forEach>

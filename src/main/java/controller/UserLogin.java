@@ -61,6 +61,7 @@ public class UserLogin extends HttpServlet {
 					session.setAttribute("role", "admin");
 					session.setMaxInactiveInterval(5 * 60);
 					response.sendRedirect(request.getContextPath()+"/admin");
+					System.out.println(session.getAttribute("role"));
 				}
 
 				else {
@@ -80,6 +81,7 @@ public class UserLogin extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 
 		} else {
 

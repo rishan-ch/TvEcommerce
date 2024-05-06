@@ -32,31 +32,28 @@ public class ProductDAO {
 	}
 	
 	public int updateProduct(Product product) throws SQLException {
-		int row=0;
+		int row;
 		
-//		if(isUsernameTakenByOther(student.getUsername(),student.getId()))
-//		{
-//			return row;
-//		}
-//		else if(isEmailTakenByOther(student.getEmail(),student.getId()))
-//		{
-//			return row;
-//		}
-//		else if(isPhoneNumberTakenByOther(student.getPhoneNumber(),student.getId()))
-//		{
-//			return row;
-//		}
-//		else
-//		{
-			statement=conn.prepareStatement("update product set productNametName=?,productDescription=?,screenSize=?,quantity=?,brand=?,price=? where id=?");
-		     statement.setString(1, product.getProductName());
+			statement=conn.prepareStatement("update product set productName=?,productDescription=?,screenSize=?,quantity=?,brand=?,price=?,productImage=?,productImageName=? where id=?");
+		    
+			System.out.println(product.getProductName());
+		    System.out.println("ID " + product.getId());
+			statement.setString(1, product.getProductName());
 		     statement.setString(2, product.getProductDescription());
 		     statement.setString(3, product.getScreenSize());
 		     statement.setInt(4, product.getQuantity());
 		     statement.setString(5, product.getBrand());
 		     statement.setFloat(6, product.getPrice());
 		     
-		      row=statement.executeUpdate();
+			Blob blob = conn.createBlob();
+			blob.setBytes(1, product.getProductImage());
+			statement.setBlob(7, blob); 
+			statement.setString(8, product.getProductImageName());
+			statement.setInt(9, product.getId()); 
+		     
+		     row=statement.executeUpdate();
+		     System.out.println("row"+row);
+		     System.out.println("update bhayo");
 //		}
 	     
 		
@@ -64,18 +61,20 @@ public class ProductDAO {
 	}
 	
 	public Product getProductById(int id) throws SQLException {
-		statement=conn.prepareStatement("select productName,productDescription,screenSize,quantity,brand,price from product where id=?");
+		statement=conn.prepareStatement("select id,productName,productDescription,screenSize,quantity,brand,price from product where id=?");
 		statement.setInt(1, id);
 		resultSet =statement.executeQuery();
 		Product product=new Product();
 		if(resultSet.next())
 		{
+			product.setId(resultSet.getInt("id"));
 			product.setProductName(resultSet.getString("productName"));
 			product.setProductDescription(resultSet.getString("productDescription"));
 			product.setScreenSize(resultSet.getString("screenSize"));
 			product.setQuantity(resultSet.getInt("quantity"));
 			product.setBrand(resultSet.getString("brand"));
 			product.setPrice(resultSet.getFloat("price"));
+			
 			
 		}
 		return product;

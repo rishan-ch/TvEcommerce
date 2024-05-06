@@ -6,7 +6,7 @@
     </welcome-file-list>
     
 
-   <!-- <filter>
+   <filter>
     	<filter-name>AuthenticationFilter</filter-name>
     	<filter-class>filters.AuthenticationFilter</filter-class>
     </filter>
@@ -26,9 +26,9 @@
     
     
     
-     Add filter mapping for CSS resources 
+      
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
         <url-pattern>*.css</url-pattern>
-    </filter-mapping>-->
+    </filter-mapping>
 </web-app>

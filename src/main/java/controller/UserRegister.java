@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.User;
 import service.UserDAO;
+import utils.PasswordHashing;
 
 /**
  * Servlet implementation class UserRegister
@@ -77,7 +78,7 @@ public class UserRegister extends HttpServlet {
 		user.setGender(gender);
 		user.setAddress(address);
 		//hashing
-		user.setPassword(password);
+		user.setPassword(PasswordHashing.getPasswordHash(password));
 		
 		boolean isSuccess = dao.addUser(user);
 		
