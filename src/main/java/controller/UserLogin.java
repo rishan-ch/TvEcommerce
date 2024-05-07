@@ -41,7 +41,6 @@ public class UserLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println(request.getRequestURI());
 		request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
 	}
 
@@ -65,7 +64,7 @@ public class UserLogin extends HttpServlet {
 				}
 
 				else {
-					boolean isSuccess = dao.studentLogin(username, password);
+					boolean isSuccess = dao.userLogin(username, password);
 					if (isSuccess) {
 						HttpSession session = request.getSession();
 						session.setAttribute("username", username);
