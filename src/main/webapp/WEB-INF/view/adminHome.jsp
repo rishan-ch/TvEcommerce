@@ -83,7 +83,6 @@
                 </a>
             </li>
             
-s
             
         </ul>
     <section class="dashboard">
@@ -116,12 +115,5 @@ s
     </section>
     </div>
     
-</body>
-</html>
-
-
-
-
-<a href="<%=request.getContextPath() %>/addProduct">Add product</a>
 </body>
 </html>

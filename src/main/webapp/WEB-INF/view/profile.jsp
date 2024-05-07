@@ -8,9 +8,13 @@
 </head>
 <body>
 
-User profile
+Welcome , 
 <form action="<%=request.getContextPath()%>/logout" method="post">
 <button type="submit" >Logout</button>
+</form>
+
+<form action="<%=request.getContextPath()%>/editProfile" method="post">
+<button type="submit" >Edit profile</button>
 </form>
 
 </body>

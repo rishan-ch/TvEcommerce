@@ -48,11 +48,11 @@ public class AuthenticationFilter implements Filter {
 	            
 	        }
 	    	
-	    	else if (session.getAttribute("email") != null) {
+	    	else if (session.getAttribute("username") != null) {
 	    		chain.doFilter(request, response);
 	        } 
 	    	
-	    	else if (session.getAttribute("email") == null) {
+	    	else if (session.getAttribute("username") == null) {
 
 				if (requestUrl.endsWith("profile") || requestUrl.endsWith("logout") || requestUrl.endsWith("admin") || requestUrl.endsWith("product")){
 					response.sendRedirect(request.getContextPath() + "/login");

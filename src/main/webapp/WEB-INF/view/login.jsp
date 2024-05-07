@@ -19,7 +19,7 @@
 						<%}
 						%>
                 <h1>Log in</h1>
-                <input type="email" placeholder="Email" id="email" name="email">
+                <input type="text" placeholder="Username" id="Username" name="username">
                 <input type="password" placeholder="Password" id="password" name ="password">
                 <a href="#">Forgot Your Password?</a>
                 <button type="submit" name ="login">Login</button>

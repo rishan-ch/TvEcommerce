@@ -61,6 +61,7 @@ public class UserRegister extends HttpServlet {
 		}
 		String gender = request.getParameter("gender");
 		String address = request.getParameter("address");
+		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String retypePassword = request.getParameter("retypePassword");
 		
@@ -79,6 +80,7 @@ public class UserRegister extends HttpServlet {
 		user.setAddress(address);
 		//hashing
 		user.setPassword(PasswordHashing.getPasswordHash(password));
+		user.setUsername(username);
 		
 		boolean isSuccess = dao.addUser(user);
 		

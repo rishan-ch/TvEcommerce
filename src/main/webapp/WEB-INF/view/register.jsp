@@ -14,6 +14,7 @@
 	                <h1>Create Account</h1>
 	                <input type="text" placeholder="Full Name" name = "fullName">
 	                <input type="email" placeholder="Email" name = "email">
+	                <input type="text" placeholder="Username" name = "username">
 	                <div class="row">
 	                    <div class="col">
 	                        <input type="password" placeholder="Password" name="password">

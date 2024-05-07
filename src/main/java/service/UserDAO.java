@@ -14,8 +14,8 @@ public class UserDAO {
 	private boolean isSuccess;
 	private ResultSet resultSet;
 	private static final String insertQuery = "insert into user"
-			+ "(fullName,email,phone,dob,gender,address,password)"
-			+ "values(?,?,?,?,?,?,?)";
+			+ "(fullName,email,phone,dob,gender,address,password,username)"
+			+ "values(?,?,?,?,?,?,?,?)";
 	
 	public UserDAO() {
 		conn = DbConnectivity.getDbConnection();
@@ -72,6 +72,7 @@ public class UserDAO {
 		statement.setString(5, user.getGender());
 		statement.setString(6, user.getAddress());
 		statement.setString(7, user.getPassword());
+		statement.setString(8, user.getUsername());
 		
 		int rows = statement.executeUpdate();
 		
@@ -79,9 +80,9 @@ public class UserDAO {
 	}
 	
 	//login
-	public boolean studentLogin(String email, String password) throws SQLException {
-		statement = conn.prepareStatement("select email,password from user where email=?");
-		statement.setString(1, email);
+	public boolean studentLogin(String username, String password) throws SQLException {
+		statement = conn.prepareStatement("select email,password from user where username=?");
+		statement.setString(1, username);
 		resultSet = statement.executeQuery();
 		boolean isSuccess = false;
 		if (resultSet.next()) {
@@ -104,18 +105,22 @@ public class UserDAO {
 	public boolean checkUser(User user) throws SQLException {
 		
 		boolean isFound = false;
-		String query = "select email,phone from user";
+		String query = "select email,phone,username from user";
 		statement = conn.prepareStatement(query);
 		resultSet = statement.executeQuery();
 		
 		while(resultSet.next()) {
 			String emailFromDB = resultSet.getString("email");
+			String usernameFromDB = resultSet.getString("username");
 			long phoneFromDB = resultSet.getLong("phone");
 			
 			if(user.getEmail().equals(emailFromDB)) {
 				isFound = true;
 				break;
 			}else if(user.getPhone()==phoneFromDB) {
+				isFound = true;
+				break;
+			}else if(user.getUsername()==usernameFromDB) {
 				isFound = true;
 				break;
 			}

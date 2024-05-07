@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,18 +49,15 @@ public class UserLogin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getRequestURI());
-		System.out.println("data is coming to servlet");
 		String loginForm = request.getParameter("login");
 		if (loginForm != null) {
 
-			String email = request.getParameter("email");
+			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			
 			try {
-				if (email.equals("admin@gmail.com") && password.equals("a")) {
+				if (username.equals("admin123") && password.equals("a")) {
 					HttpSession session = request.getSession();
-					session.setAttribute("email", email);
+					session.setAttribute("username", username);
 					session.setAttribute("role", "admin");
 					session.setMaxInactiveInterval(5 * 60);
 					response.sendRedirect(request.getContextPath()+"/admin");
@@ -67,12 +65,16 @@ public class UserLogin extends HttpServlet {
 				}
 
 				else {
-					boolean isSuccess = dao.studentLogin(email, password);
+					boolean isSuccess = dao.studentLogin(username, password);
 					if (isSuccess) {
 						HttpSession session = request.getSession();
-						session.setAttribute("email", email);
+						session.setAttribute("username", username);
 						session.setAttribute("role", "user");
 						session.setMaxInactiveInterval(5 * 60);
+						
+						Cookie userCookie = new Cookie("username", username);
+						userCookie.setMaxAge(5*60);
+						response.addCookie(userCookie);
 						response.sendRedirect(request.getContextPath()+"/home");
 					} else {
 						request.setAttribute("error", "invalid username or password");
