@@ -40,6 +40,7 @@ public class UserLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println(request.getRequestURI());
 		request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
 	}
 
@@ -47,6 +48,7 @@ public class UserLogin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(request.getRequestURI());
 		System.out.println("data is coming to servlet");
 		String loginForm = request.getParameter("login");
 		if (loginForm != null) {

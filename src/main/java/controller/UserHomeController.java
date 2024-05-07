@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class HomeController
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/home" })
-public class HomeController extends HttpServlet {
+public class UserHomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeController() {
+    public UserHomeController() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -24,14 +24,14 @@ import service.ProductDAO;
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 				maxFileSize = 1024 * 1024 * 10,      // 10MB
 				maxRequestSize = 1024 * 1024 * 50)  // 50MB
-public class AddProductController extends HttpServlet {
+public class ProductAddController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProductDAO productdao;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddProductController() {
+    public ProductAddController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -53,7 +53,8 @@ public class AddProductController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		
 		String productName = request.getParameter("productName");
 		String productDescription = request.getParameter("productDescription");
 		String screenSize = request.getParameter("screenSize");

@@ -4,12 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Home</title>
+<title>Profile</title>
 </head>
 <body>
-home
+
+User profile
 <form action="<%=request.getContextPath()%>/logout" method="post">
 <button type="submit" >Logout</button>
 </form>
+
 </body>
 </html>

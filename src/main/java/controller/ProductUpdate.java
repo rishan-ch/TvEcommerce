@@ -23,14 +23,14 @@ import service.ProductDAO;
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 maxFileSize = 1024 * 1024 * 10,      // 10MB
 maxRequestSize = 1024 * 1024 * 50)  // 50MB
-public class UpdateProduct extends HttpServlet {
+public class ProductUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProductDAO productDAO;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateProduct() {
+    public ProductUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }

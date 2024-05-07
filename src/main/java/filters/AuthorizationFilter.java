@@ -49,9 +49,9 @@ public class AuthorizationFilter implements Filter {
 				
 				request.getRequestDispatcher("updateProduct").forward(request, response);
 			}
-			else if (!request.getRequestURI().endsWith("admin")) {
+			else if (request.getRequestURI().endsWith("product")) {
 				
-				response.sendRedirect(request.getContextPath() + "/admin");
+				request.getRequestDispatcher("product").forward(request, response);
 			}
 			else
 			{
@@ -66,20 +66,22 @@ public class AuthorizationFilter implements Filter {
 			{
 				request.getRequestDispatcher("logout").forward(request, response);
 			}
-			else if (role != null && role.equals("user") && !request.getRequestURI().endsWith("home")) {
+			else if (request.getRequestURI().endsWith("profile")) {
 
-				response.sendRedirect(request.getContextPath() + "/home");
+				request.getRequestDispatcher("profile").forward(request, response);
 			}
-			else 
+			else if (request.getRequestURI().endsWith("home"))
 			{
-
 				
 				request.getRequestDispatcher("home").forward(request, response);
+			} else {
+				request.getRequestDispatcher("error").forward(request, response);
 			}
 		}
 		else
 
 		{
+			
 			chain.doFilter(request, response);
 		}
     }
