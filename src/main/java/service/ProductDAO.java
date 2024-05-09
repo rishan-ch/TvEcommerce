@@ -15,7 +15,6 @@ public class ProductDAO {
 	
 	private Connection conn;
 	private PreparedStatement statement;
-	//private boolean productAdded;
 	private ResultSet resultSet;
 	private static final String productInsert = "insert into product "
 	        + "(productName, productDescription, screenSize, quantity, brand, price, productImage, productImageName) "
@@ -54,7 +53,6 @@ public class ProductDAO {
 		     row=statement.executeUpdate();
 		     System.out.println("row"+row);
 		     System.out.println("update bhayo");
-//		}
 	     
 		
 	     return row;
@@ -74,7 +72,6 @@ public class ProductDAO {
 			product.setQuantity(resultSet.getInt("quantity"));
 			product.setBrand(resultSet.getString("brand"));
 			product.setPrice(resultSet.getFloat("price"));
-			
 			
 		}
 		return product;

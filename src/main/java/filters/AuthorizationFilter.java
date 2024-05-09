@@ -53,6 +53,10 @@ public class AuthorizationFilter implements Filter {
 				
 				request.getRequestDispatcher("product").forward(request, response);
 			}
+			else if (request.getRequestURI().endsWith("logout")) {
+				
+				request.getRequestDispatcher("logout").forward(request, response);
+			}
 			else
 			{
 				request.getRequestDispatcher("admin").forward(request, response);
@@ -70,11 +74,43 @@ public class AuthorizationFilter implements Filter {
 
 				request.getRequestDispatcher("profile").forward(request, response);
 			}
+			else if (request.getRequestURI().endsWith("viewProduct")) {
+
+				request.getRequestDispatcher("viewProduct").forward(request, response);
+			}
+			else if (request.getRequestURI().endsWith("addToCart")) {
+
+				request.getRequestDispatcher("addToCart").forward(request, response);
+			}
+			else if (request.getRequestURI().endsWith("cart")) {
+
+				request.getRequestDispatcher("cart").forward(request, response);
+			}
 			else if (request.getRequestURI().endsWith("home"))
 			{
-				
 				request.getRequestDispatcher("home").forward(request, response);
-			} else {
+			}
+			else if (request.getRequestURI().endsWith("checkout"))
+			{
+				request.getRequestDispatcher("checkout").forward(request, response);
+			} 
+			else if (request.getRequestURI().endsWith("userOrder"))
+			{
+				request.getRequestDispatcher("userOrder").forward(request, response);
+			} 
+			else if (request.getRequestURI().endsWith("removeItem"))
+			{
+				request.getRequestDispatcher("removeItem").forward(request, response);
+			} 
+			else if (request.getRequestURI().endsWith("increaseItem"))
+			{
+				request.getRequestDispatcher("increaseItem").forward(request, response);
+			} 
+			else if (request.getRequestURI().endsWith("reduceItem"))
+			{
+				request.getRequestDispatcher("reduceItem").forward(request, response);
+			}
+			else {
 				request.getRequestDispatcher("error").forward(request, response);
 			}
 		}

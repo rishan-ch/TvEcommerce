@@ -77,15 +77,18 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users.html" >
+                <a class="nav-link collapsed" href="<%=request.getContextPath() %>/logout" >
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Users</span>
+                    <span>Logout</span>
                 </a>
             </li>
             
             
         </ul>
     <section class="dashboard">
+    <form action="<%=request.getContextPath()%>/logout" method="post">
+<button type="submit" >Logout</button>
+</form>
         <div class="dash-content">
             <div class="overview">
                 <div class="title">

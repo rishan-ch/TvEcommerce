@@ -1,5 +1,3 @@
-/filters/
-/controller/
-/utils/
 /service/
-/model/
+/controller/
+/filters/

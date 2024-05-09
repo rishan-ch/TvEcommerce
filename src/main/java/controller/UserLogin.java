@@ -69,11 +69,10 @@ public class UserLogin extends HttpServlet {
 						HttpSession session = request.getSession();
 						session.setAttribute("username", username);
 						session.setAttribute("role", "user");
+						int id = dao.getIdByUsername(username);
+						session.setAttribute("id", id);
+						System.out.println(id);
 						session.setMaxInactiveInterval(5 * 60);
-						
-						Cookie userCookie = new Cookie("username", username);
-						userCookie.setMaxAge(5*60);
-						response.addCookie(userCookie);
 						response.sendRedirect(request.getContextPath()+"/home");
 					} else {
 						request.setAttribute("error", "invalid username or password");

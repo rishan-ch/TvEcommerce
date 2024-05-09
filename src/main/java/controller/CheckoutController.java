@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,17 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Cart;
+import service.OrderDAO;
+
 /**
- * Servlet implementation class UserLogout
+ * Servlet implementation class CheckoutController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/logout" })
-public class UserLogout extends HttpServlet {
+@WebServlet(asyncSupported = true, urlPatterns = { "/checkout" })
+public class CheckoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserLogout() {
+    public CheckoutController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,13 +33,15 @@ public class UserLogout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		System.out.println("role" + session.getAttribute("role"));
-		if (session != null) {
-			session.invalidate();
-			
+		if(session!=null)
+		{
+			System.out.println("hello");
+		ArrayList<Cart> cartItems = (ArrayList<Cart>) session.getAttribute("cartList");
+
+        OrderDAO orderDAO = new OrderDAO();
+        orderDAO.addItemsToOrder(cartItems);
+        response.sendRedirect(request.getContextPath()+"/viewProduct");
 		}
-		
-		response.sendRedirect("login");
 		
 	}
 
@@ -42,14 +49,7 @@ public class UserLogout extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//HttpSession session = request.getSession(false);
-//		System.out.println("role" + session.getAttribute("role"));
-//		if (session != null) {
-//			session.invalidate();
-//			
-//		}
-//		
-//		response.sendRedirect(request.getContextPath()+"/login");
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

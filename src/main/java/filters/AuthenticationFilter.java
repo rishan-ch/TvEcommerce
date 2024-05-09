@@ -28,18 +28,24 @@ public class AuthenticationFilter implements Filter {
 	    String requestUrl = request.getRequestURI();
 	    HttpSession session = request.getSession(false);
 	    
-	    System.out.println("Filter hit");
-	    System.out.println("Request URL: " + requestUrl);
-	    System.out.println("Session: " + session);
+//	    System.out.println("Filter hit");
+//	    System.out.println("Request URL: " + requestUrl);
+//	    System.out.println("Session: " + session);
 	    
 	    if (requestUrl.endsWith(".css")) {
 	        chain.doFilter(request, response);
 	        return;
 	    }
+	    else if(requestUrl.endsWith(".png") || requestUrl.endsWith(".jpg")) {
+	    	chain.doFilter(request, response);
+	        return;
+	    }
 
 	    else if (requestUrl.endsWith("/") || requestUrl.endsWith("login") || requestUrl.endsWith("register") || requestUrl.endsWith("home")
 	            || requestUrl.endsWith("logout") || requestUrl.endsWith("profile") || requestUrl.endsWith("admin") || requestUrl.endsWith("product") 
-	    		|| requestUrl.endsWith("editProduct") || requestUrl.endsWith("addProduct") || requestUrl.endsWith("updateProduct") || requestUrl.endsWith("deleteProduct"))
+	    		|| requestUrl.endsWith("editProduct") || requestUrl.endsWith("addProduct") || requestUrl.endsWith("updateProduct") || requestUrl.endsWith("deleteProduct")
+	    		|| requestUrl.endsWith("viewProduct") || requestUrl.endsWith("addToCart") || requestUrl.endsWith("cart") || requestUrl.endsWith("checkout")
+	    		|| requestUrl.endsWith("userOrder") || requestUrl.endsWith("removeItem") || requestUrl.endsWith("increaseItem")|| requestUrl.endsWith("reduceItem"))
 	    {
 	        
 	    	if (session == null) {

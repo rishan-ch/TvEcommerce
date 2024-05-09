@@ -60,6 +60,17 @@ public class UserDAO {
 		
 	}
 	
+	public int getIdByUsername(String username) throws SQLException {
+	    statement = conn.prepareStatement("SELECT id FROM user WHERE username=?");
+	    statement.setString(1, username);
+	    resultSet = statement.executeQuery();
+	    int id = -1;
+	    if(resultSet.next()) {
+	        id = resultSet.getInt("id");
+	    }
+	    return id;
+	}
+	
 	//method to insert user data into db
 	//query is instantiated 
 	public int insertUser(User user) throws SQLException{

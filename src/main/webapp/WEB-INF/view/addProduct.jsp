@@ -77,7 +77,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users.html" >
+                <a class="nav-link collapsed" href="<%=request.getContextPath() %>/logout" >
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Users</span>
                 </a>
